@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo rápido de utilización de $route, $routeParams y $location</title>
+  
+
+  <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
+  <script src="//code.angularjs.org/snapshot/angular-route.js"></script>
+  <script src="script.js"></script>
+  
+ <!-- Lo siguiente añadirá una etiqueta base con un atributo href con el valor desde servername hasta este index.html, es decir, el pathname de este archivo --> 
+  <script type="text/javascript">
+    angular.element(document.getElementsByTagName('head')).append(
+      angular.element('<base href="' + window.location.pathname + '" />')
+      );
+  </script>
+</head>
+
+<body ng-app="aplicacion">
+  <div ng-controller="PrincipalController">
+  <a href="libro/Quijote">Quijote</a> |
+  <a href="libro/Quijote/capitulo/1">Quijote: Cáp.1</a> |
+  <a href="libro/Celestina">Celestina</a> |
+  <a href="libro/Celestina/capitulo/4?clave=valor">Celestina: Cáp.4</a> 
+ 
+  <hr />
+
+  <pre>$location.path() = {{$location.path()}}</pre>
+  <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+  <pre>$route.current.params = {{$route.current.params}}</pre>
+  <strong>Variables que toman nuevo valor al instanciarse el controller instanciado, y por tanto tendrá más retraso:</strong>
+  <pre>$route.current.scope.nombre = {{$route.current.scope.nombre}} (Se borra al cambiar de controlador hasta que se instancie el siguiente) </pre>
+  <pre>$routeParams = {{$routeParams}} (Lo mantiene hasta nueva instanciación)</pre>
+
+  <hr />
+
+  <div ng-view></div>
+
+</div>
+</body>
+</html>
+
+<!-- 
+Basado en https://docs.angularjs.org/api/ngRoute/service/$route
+-->
